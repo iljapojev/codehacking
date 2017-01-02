@@ -8,12 +8,15 @@ use App\Photo;
 use App\Http\Requests\UsersCreateRequest;
 use App\Http\Requests\UsersEditRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
 
 class AdminUsersController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -64,6 +67,9 @@ class AdminUsersController extends Controller
         
         User::create($input);
         
+        $username = $request->name;
+        Session::flash('message','User ' . $username . ' has been created.');
+        
         return redirect('/admin/users');
 //         return $request->all();
     }
@@ -113,13 +119,16 @@ class AdminUsersController extends Controller
 
         if($request->file('photo_id')){
             $file = $request->file('photo_id');
-            $name = time() . $file->getClientOriginalName();
+            $name = time() . "_" . $file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file'=>$name]);
 
             $input['photo_id'] = $photo->id;
         }
         $user->update($input);
+        
+        $username = User::findOrFail($id)->name;
+        Session::flash('message','User ' . $username . ' has been updated.');
     
         return redirect('admin/users');
     }
@@ -132,6 +141,14 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $username = User::findOrFail($id)->name;
+        
+        $user = User::findOrFail($id);
+        unlink(public_path() . $user->photo->file);
+        $user->delete();
+
+        Session::flash('message','User ' . $username . ' has been deleted.');
+        
+        return redirect('admin/users');
     }
 }

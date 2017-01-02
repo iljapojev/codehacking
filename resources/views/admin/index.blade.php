@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('page-title')
+    Admin dashboard
+@endsection
+
 @section('content')
-<h1>Admin</h1>
+
 @endsection

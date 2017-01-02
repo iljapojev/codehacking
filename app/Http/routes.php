@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+//     dd(Auth::user());
     return view('welcome');
 });
 
@@ -27,14 +28,21 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => 'web'], function () {
+    
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
-    
+
+});
+
+Route::group(['middleware' => ['web', 'admin']], function() {
+
     Route::get('/admin', function(){
         return view('admin.index');
     });
-    
-    Route::resource('/admin/users', 'AdminUsersController');
-});
 
+    Route::resource('/admin/users', 'AdminUsersController');
+    
+    Route::resource('admin/posts', 'AdminPostsController');
+
+});

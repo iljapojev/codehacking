@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('page-title')
+    Edit user
+@endsection
 
-    <h1>Edit user</h1>
+@section('content')
 
     <div class="row">
 
@@ -38,7 +40,13 @@
                     {!! Form::password('password', ['class'=>'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::submit('Edit user', ['class'=>'btn btn-primary']) !!}
+                    {!! Form::submit('Edit user', ['class'=>'btn btn-primary col-md-2', 'style'=>'margin-right: 10px;']) !!}
+                </div>
+            {!! Form::close() !!}
+            
+            {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy',$user->id]]) !!}
+                <div class="form-group">
+                    {!! Form::submit('Delete user', ['class'=>'btn btn-danger col-md-2']) !!}
                 </div>
             {!! Form::close() !!}
 
