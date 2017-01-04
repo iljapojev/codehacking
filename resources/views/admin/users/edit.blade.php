@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row" style="margin-bottom:20px;">
 
         <div class="col-sm-2">
             <img src="{{ $user->photo ? $user->photo->file : '/images/profile.png'}}" alt="" class="img-responsive img-rounded">
@@ -14,7 +14,7 @@
         
         <div class="col-sm-10">
 
-            {!! Form::model($user, ['method'=>'PATCH', 'action'=> ['AdminUsersController@update', $user->id], 'files'=>true]) !!}
+            {!! Form::model($user, ['method'=>'PATCH', 'action'=> ['AdminUsersController@update', $user->id], 'files'=>true, ]) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', null, ['class'=>'form-control']) !!}

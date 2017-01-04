@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PostsCreateRequest extends Request
+class PostsEditRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,23 +26,7 @@ class PostsCreateRequest extends Request
         return [
             'title'         => 'required',
             'category_id'   => 'required',
-//             'photo_id'      => 'required',
             'body'          => 'required',
-        ];
-    }
-    
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'title.required' => 'A title is required',
-            'category_id.required' => 'A category is required',
-            'photo_id.required'  => 'A photo is required',
-            'body.required'  => 'A message is required',
         ];
     }
 }
