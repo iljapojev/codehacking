@@ -16,9 +16,6 @@
 <div class="form-group">
     {!! Form::submit('Create category', ['class'=>'btn btn-primary']) !!}
 </div>
-
-{!! Form::close() !!}
-
 {!! Form::close() !!}
 
 @include('includes.form_error')

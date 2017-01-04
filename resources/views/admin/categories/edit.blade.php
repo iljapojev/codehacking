@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row" style="margin-bottom:20px;">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
     {!! Form::model($category, ['method'=>'PATCH', 'action'=>['AdminCategoriesController@update', $category->id]]) !!}
         <div class="form-group">
             {!! Form::label('name', 'Category name *') !!}
@@ -18,14 +18,14 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Update category', ['class'=>'btn btn-primary col-md-2', 'style'=>'margin-right: 10px;']) !!}
+            {!! Form::submit('Update category', ['class'=>'btn btn-primary col-lg-4', 'style'=>'margin-right: 10px;']) !!}
         </div>
     {!! Form::close() !!}
 
 
     {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminCategoriesController@destroy',$category->id]]) !!}
         <div class="form-group">
-            {!! Form::submit('Delete category', ['class'=>'btn btn-danger col-md-2']) !!}
+            {!! Form::submit('Delete category', ['class'=>'btn btn-danger col-lg-4']) !!}
         </div>
     {!! Form::close() !!}
     </div>
