@@ -1,12 +1,13 @@
 @extends('layouts.admin')
 
+@section('page-title')
+    Users
+@endsection
+
 @section('content')
 @if(Session::has('message'))
     <div class="alert alert-info" role="alert">{{ Session('message') }}</div>
 @endif
-@section('page-title')
-    Users
-@endsection
 <table class="table">
     <thead>
         <tr>
