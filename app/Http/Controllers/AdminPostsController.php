@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Photo;
 use App\Category;
+use App\User;
+use App\Comment;
 
 class AdminPostsController extends Controller
 {
@@ -137,5 +139,13 @@ class AdminPostsController extends Controller
         Session::flash('message','Post "' . $postTitle . '" has been deleted.');
         
         return redirect('/admin/posts');
+    }
+    
+    public function post($id)
+    {
+        //
+        $post = Post::findOrFail($id);
+        $comments = $post->comments()->whereIsActive(1)->get();
+        return view('post', compact('post', 'comments'));
     }
 }

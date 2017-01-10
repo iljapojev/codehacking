@@ -36,6 +36,7 @@
                     <th>Created at</th>
                 </tr>
             </thead>
+            <tbody>
             @if($categories)
                 @foreach($categories as $category)
                     <tr>
@@ -46,6 +47,7 @@
                     </tr>
                 @endforeach
             @endif
+            </tbody>
         </table>
     </div>
 </div>
